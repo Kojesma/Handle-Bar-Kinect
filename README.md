@@ -6,4 +6,4 @@ Consideration of some basic transformations
 
 Advancement of basket-ball mini-game
 
-[![Alt text](https://img.youtube.com/vi/Y_7-VL4jOZw/0.jpg)](https://www.youtube.com/watch?v=Y_7-VL4jOZw)
+[![Alt text](https://img.youtube.com/vi/UscStY_tNAI/0.jpg)](https://www.youtube.com/watch?v=UscStY_tNAI)
