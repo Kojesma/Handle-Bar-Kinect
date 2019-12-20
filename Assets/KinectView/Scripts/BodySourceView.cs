@@ -22,6 +22,8 @@ public class BodySourceView : MonoBehaviour
     private bool rightHandClosed;
     private bool moveForward;
 
+    public bool chamber = false;
+
     private Dictionary<Kinect.JointType, Kinect.JointType> _BoneMap = new Dictionary<Kinect.JointType, Kinect.JointType>()
     {        
         { Kinect.JointType.HandTipLeft, Kinect.JointType.HandLeft },
@@ -113,6 +115,7 @@ public class BodySourceView : MonoBehaviour
     private GameObject CreateBodyObject(ulong id)
     {
         GameObject body = new GameObject("Body:" + id);
+        body.tag = "Player";
         jt_list = new List<Kinect.JointType>();
         jt_list.Add(Kinect.JointType.HandLeft);
         jt_list.Add(Kinect.JointType.HandRight);
@@ -124,7 +127,11 @@ public class BodySourceView : MonoBehaviour
 
             jointObj.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
             jointObj.name = jt.ToString();
+            jointObj.tag = "Player";
             jointObj.transform.parent = body.transform;
+            jointObj.AddComponent<Rigidbody>();
+            jointObj.GetComponent<Rigidbody>().useGravity = false;
+            jointObj.GetComponent<BoxCollider>().isTrigger = true;
         }
 
         return body;
@@ -142,6 +149,7 @@ public class BodySourceView : MonoBehaviour
 
         //Set position of handle bar
         translation = leftHand.transform.position + hand_vec / 2.0f;
+
 
         //Set rotation of handle bar
         hand_vec.Normalize();
@@ -209,7 +217,12 @@ public class BodySourceView : MonoBehaviour
             }
 
             Transform jointObj = bodyObject.transform.Find(jt.ToString());
-            jointObj.localPosition = GetVector3FromJoint(sourceJoint);
+            Vector3 pos = GetVector3FromJoint(sourceJoint) ;
+            jointObj.localPosition = new Vector3(-pos.x * 3.0f, pos.y * 5.0f, pos.z * 2.0f);
+            if (chamber)
+            {
+                jointObj.localPosition = new Vector3(-pos.x, pos.y, pos.z);
+            }
         }
     }
     

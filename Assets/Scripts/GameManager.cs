@@ -1,29 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public BodySourceView bsv;
     public GameObject ball;
-    // Start is called before the first frame update
-    void Start()
+    public Transform bar;
+    public Text text;
+
+    public int score = 0;
+
+    private void Awake()
     {
-        
+       Physics.IgnoreLayerCollision(9, 10);
+        Physics.IgnoreLayerCollision(11, 10);
+        ResetGame();
+        ActualiseScore();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ResetGame()
     {
-        if (!bsv.CheckLeftHandClosed() && bsv.CheckRightHandClosed() && ball.GetComponent<Rigidbody>().velocity == Vector3.zero &&
-            Vector3.Distance(ball.transform.position, new Vector3(0.0f, ball.transform.localScale.y / 2.0f, 20.0f)) >= 1.0f)
-        {
-            ResetGame();
-        }
+        ball.transform.position = new Vector3(0.0f, ball.transform.localScale.y / 2.0f + 3.0f, bar.position.z);
+        ball.GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
     }
 
-    void ResetGame()
+
+    public void ActualiseScore()
     {
-        ball.transform.position = new Vector3(0.0f, ball.transform.localScale.y / 2.0f, 20.0f);
+        text.text = "Score : " + score;
     }
+
 }

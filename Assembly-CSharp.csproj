@@ -60,6 +60,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\FurnishedCabin\Scripts\MoveableObject.cs" />
+    <Compile Include="Assets\FurnishedCabin\Scripts\MoveObjectController.cs" />
     <Compile Include="Assets\KinectView\Scripts\BodySourceManager.cs" />
     <Compile Include="Assets\KinectView\Scripts\BodySourceView.cs" />
     <Compile Include="Assets\KinectView\Scripts\ColorSourceManager.cs" />
@@ -72,6 +74,8 @@
     <Compile Include="Assets\KinectView\Scripts\MultiSourceManager.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\HandleBarManager.cs" />
+    <Compile Include="Assets\Scripts\MainMenuManager.cs" />
+    <Compile Include="Assets\Scripts\ResetCubeScript.cs" />
     <Compile Include="Assets\Scripts\SnapObject.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/Logiciels2/UnityVersions/2018.4.13f1/Projects/testkinect2/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
